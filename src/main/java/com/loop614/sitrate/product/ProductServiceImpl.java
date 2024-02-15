@@ -1,22 +1,30 @@
 package com.loop614.sitrate.product;
 
+import com.loop614.sitrate.product.domain.ProductReader;
 import com.loop614.sitrate.product.domain.ProductWriter;
 import com.loop614.sitrate.product.entity.Product;
 import com.loop614.sitrate.product.repository.ProductRepository;
 import com.loop614.sitrate.product.transfer.FilterProduct;
+import com.loop614.sitrate.product.transfer.PopularProductsResponse;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-    private final ProductRepository productRepository;
+    private final ProductReader productReader;
 
     private final ProductWriter productWriter;
 
-    public ProductServiceImpl(ProductWriter productWriter, ProductRepository productRepository) {
+    private final ProductRepository productRepository;
+
+    public ProductServiceImpl(
+        ProductReader productReader,
+        ProductWriter productWriter,
+        ProductRepository productRepository
+    ) {
+        this.productReader = productReader;
         this.productWriter = productWriter;
         this.productRepository = productRepository;
     }
@@ -29,7 +37,7 @@ public class ProductServiceImpl implements ProductService {
         return this.productRepository.findByCodeContainingAndNameContaining(product.getCode(), product.getName());
     }
 
-    public List<Product> popular() {
-        return new ArrayList<Product>();
+    public PopularProductsResponse getTopRatedProducts() {
+        return this.productReader.getTopRatedProducts();
     }
 }

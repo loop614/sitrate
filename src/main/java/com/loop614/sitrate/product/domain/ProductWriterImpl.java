@@ -26,7 +26,6 @@ public class ProductWriterImpl implements ProductWriter {
 
     public Product save(Product product) {
         List<HnbCurrency> hnbCurrencies;
-        System.out.println(product.getPriceEur());
         try {
             hnbCurrencies = this.hnbClientService.currencyEur();
         }

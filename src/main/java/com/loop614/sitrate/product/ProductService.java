@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.loop614.sitrate.product.entity.Product;
 import com.loop614.sitrate.product.transfer.FilterProduct;
+import com.loop614.sitrate.product.transfer.PopularProductsResponse;
 
 public interface ProductService
 {
@@ -11,5 +12,5 @@ public interface ProductService
 
     List<Product> find(FilterProduct product);
 
-    List<Product> popular();
+    PopularProductsResponse getTopRatedProducts();
 }

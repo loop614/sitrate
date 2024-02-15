@@ -3,6 +3,7 @@ package com.loop614.sitrate.product.controller;
 import com.loop614.sitrate.product.ProductService;
 import com.loop614.sitrate.product.entity.Product;
 import com.loop614.sitrate.product.transfer.FilterProduct;
+import com.loop614.sitrate.product.transfer.PopularProductsResponse;
 
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class ProductController {
     }
 
     @GetMapping("/product/popular")
-    public ResponseEntity<List<Product>> popularProduct() {
-        return new ResponseEntity<List<Product>>(this.productService.popular(), HttpStatus.OK);
+    public ResponseEntity<PopularProductsResponse> popularProduct() {
+        return new ResponseEntity<PopularProductsResponse>(this.productService.getTopRatedProducts(), HttpStatus.OK);
     }
 }

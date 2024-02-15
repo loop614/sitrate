@@ -1,0 +1,145 @@
+[
+    {
+        "broj_tecajnice": "32",
+        "datum_primjene": "2024-02-15",
+        "drzava": "Australija",
+        "drzava_iso": "AUS",
+        "sifra_valute": "036",
+        "valuta": "AUD",
+        "kupovni_tecaj": "1,6546",
+        "srednji_tecaj": "1,6521",
+        "prodajni_tecaj": "1,6496"
+    },
+    {
+        "broj_tecajnice": "32",
+        "datum_primjene": "2024-02-15",
+        "drzava": "Kanada",
+        "drzava_iso": "CAN",
+        "sifra_valute": "124",
+        "valuta": "CAD",
+        "kupovni_tecaj": "1,4531",
+        "srednji_tecaj": "1,4509",
+        "prodajni_tecaj": "1,4487"
+    },
+    {
+        "broj_tecajnice": "32",
+        "datum_primjene": "2024-02-15",
+        "drzava": "Češka",
+        "drzava_iso": "CZE",
+        "sifra_valute": "203",
+        "valuta": "CZK",
+        "kupovni_tecaj": "25,386",
+        "srednji_tecaj": "25,348",
+        "prodajni_tecaj": "25,310"
+    },
+    {
+        "broj_tecajnice": "32",
+        "datum_primjene": "2024-02-15",
+        "drzava": "Danska",
+        "drzava_iso": "DNK",
+        "sifra_valute": "208",
+        "valuta": "DKK",
+        "kupovni_tecaj": "7,4649",
+        "srednji_tecaj": "7,4537",
+        "prodajni_tecaj": "7,4425"
+    },
+    {
+        "broj_tecajnice": "32",
+        "datum_primjene": "2024-02-15",
+        "drzava": "Mađarska",
+        "drzava_iso": "HUN",
+        "sifra_valute": "348",
+        "valuta": "HUF",
+        "kupovni_tecaj": "389,31",
+        "srednji_tecaj": "388,73",
+        "prodajni_tecaj": "388,15"
+    },
+    {
+        "broj_tecajnice": "32",
+        "datum_primjene": "2024-02-15",
+        "drzava": "Japan",
+        "drzava_iso": "JPN",
+        "sifra_valute": "392",
+        "valuta": "JPY",
+        "kupovni_tecaj": "161,52",
+        "srednji_tecaj": "161,28",
+        "prodajni_tecaj": "161,04"
+    },
+    {
+        "broj_tecajnice": "32",
+        "datum_primjene": "2024-02-15",
+        "drzava": "Norveška",
+        "drzava_iso": "NOR",
+        "sifra_valute": "578",
+        "valuta": "NOK",
+        "kupovni_tecaj": "11,3545",
+        "srednji_tecaj": "11,3375",
+        "prodajni_tecaj": "11,3205"
+    },
+    {
+        "broj_tecajnice": "32",
+        "datum_primjene": "2024-02-15",
+        "drzava": "Švedska",
+        "drzava_iso": "SWE",
+        "sifra_valute": "752",
+        "valuta": "SEK",
+        "kupovni_tecaj": "11,3297",
+        "srednji_tecaj": "11,3127",
+        "prodajni_tecaj": "11,2957"
+    },
+    {
+        "broj_tecajnice": "32",
+        "datum_primjene": "2024-02-15",
+        "drzava": "Švicarska",
+        "drzava_iso": "CHE",
+        "sifra_valute": "756",
+        "valuta": "CHF",
+        "kupovni_tecaj": "0,9507",
+        "srednji_tecaj": "0,9493",
+        "prodajni_tecaj": "0,9479"
+    },
+    {
+        "broj_tecajnice": "32",
+        "datum_primjene": "2024-02-15",
+        "drzava": "Velika Britanija",
+        "drzava_iso": "GBR",
+        "sifra_valute": "826",
+        "valuta": "GBP",
+        "kupovni_tecaj": "0,85386",
+        "srednji_tecaj": "0,85258",
+        "prodajni_tecaj": "0,85130"
+    },
+    {
+        "broj_tecajnice": "32",
+        "datum_primjene": "2024-02-15",
+        "drzava": "SAD",
+        "drzava_iso": "USA",
+        "sifra_valute": "840",
+        "valuta": "USD",
+        "kupovni_tecaj": "1,0729",
+        "srednji_tecaj": "1,0713",
+        "prodajni_tecaj": "1,0697"
+    },
+    {
+        "broj_tecajnice": "32",
+        "datum_primjene": "2024-02-15",
+        "drzava": "Bosna i Hercegovina",
+        "drzava_iso": "BIH",
+        "sifra_valute": "977",
+        "valuta": "BAM",
+        "kupovni_tecaj": "1,95876",
+        "srednji_tecaj": "1,95583",
+        "prodajni_tecaj": "1,95290"
+    },
+    {
+        "broj_tecajnice": "32",
+        "datum_primjene": "2024-02-15",
+        "drzava": "Poljska",
+        "drzava_iso": "POL",
+        "sifra_valute": "985",
+        "valuta": "PLN",
+        "kupovni_tecaj": "4,3480",
+        "srednji_tecaj": "4,3415",
+        "prodajni_tecaj": "4,3350"
+    }
+]

@@ -20,14 +20,14 @@ public class HnbCurrency {
     public static HnbCurrency fromJson(JSONObject hnbCurrencyJson) {
         HnbCurrency currency = new HnbCurrency();
         currency.broj_tecajnice = hnbCurrencyJson.getInt("broj_tecajnice");
-        currency.datum_primjene = parseDate(hnbCurrencyJson.getString("datum_primjene"));
+        currency.datum_primjene = new Date(hnbCurrencyJson.getLong("datum_primjene"));
         currency.drzava = hnbCurrencyJson.getString("drzava");
         currency.drzava_iso = hnbCurrencyJson.getString("drzava_iso");
         currency.sifra_valute = hnbCurrencyJson.getString("sifra_valute");
         currency.valuta = hnbCurrencyJson.getString("valuta");
-        currency.kupovni_tecaj = Double.valueOf(hnbCurrencyJson.getString("kupovni_tecaj").replace(',', '.'));
-        currency.srednji_tecaj = Double.valueOf(hnbCurrencyJson.getString("srednji_tecaj").replace(',', '.'));
-        currency.prodajni_tecaj = Double.valueOf(hnbCurrencyJson.getString("prodajni_tecaj").replace(',', '.'));
+        currency.kupovni_tecaj = hnbCurrencyJson.getDouble("kupovni_tecaj");
+        currency.srednji_tecaj = hnbCurrencyJson.getDouble("srednji_tecaj");
+        currency.prodajni_tecaj = hnbCurrencyJson.getDouble("prodajni_tecaj");
 
         return currency;
     }
@@ -47,5 +47,20 @@ public class HnbCurrency {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public static HnbCurrency fromReceivedObject(HnbCurrencyReceived receivedObject) {
+        HnbCurrency currency = new HnbCurrency();
+        currency.broj_tecajnice = Integer.valueOf(receivedObject.broj_tecajnice);
+        currency.datum_primjene = parseDate(receivedObject.datum_primjene);
+        currency.drzava = receivedObject.drzava;
+        currency.drzava_iso = receivedObject.drzava_iso;
+        currency.sifra_valute = receivedObject.sifra_valute;
+        currency.valuta = receivedObject.valuta;
+        currency.kupovni_tecaj = Double.valueOf(receivedObject.kupovni_tecaj.replace(',', '.'));
+        currency.srednji_tecaj = Double.valueOf(receivedObject.srednji_tecaj.replace(',', '.'));
+        currency.prodajni_tecaj = Double.valueOf(receivedObject.prodajni_tecaj.replace(',', '.'));
+
+        return currency;
     }
 }

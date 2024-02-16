@@ -1,5 +1,6 @@
 package com.loop614.sitrate.product.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ public class ProductWriterImpl implements ProductWriter {
     }
 
     public Product save(Product product) {
-        List<HnbCurrency> hnbCurrencies;
+        List<HnbCurrency> hnbCurrencies = new ArrayList<HnbCurrency>();
         try {
             hnbCurrencies = this.hnbClientService.currencyEur();
         }

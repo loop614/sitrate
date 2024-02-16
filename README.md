@@ -8,8 +8,8 @@
 ```console
 $ ./mvnw spring-boot:run
 ```
-- [open](http://localhost:12345/product/popular)
-- [open](http://localhost:12345/product/filter?code=SGS23&name=Samsung)
+- [open popular products](http://localhost:12345/product/popular)
+- [open filter products](http://localhost:12345/product/filter?code=SGS23&name=Samsung)
 ```console
 $ curl --request POST --url http://localhost:12345/product/new --header 'content-type: application/json' --data '{"code": "Apple", "name":"iPhone latest","priceEur":2.2,"description":"this is iphone"}'
 ```

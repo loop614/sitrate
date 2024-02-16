@@ -27,6 +27,11 @@ public class ProductWriterImpl implements ProductWriter {
 
     public Product save(Product product) {
         List<HnbCurrency> hnbCurrencies = new ArrayList<HnbCurrency>();
+        Product existingProduct = this.productRepository.findByCode(product.getCode());
+        if (existingProduct != null) {
+            product.setId(existingProduct.getId());
+        }
+
         try {
             hnbCurrencies = this.hnbClientService.currencyEur();
         }

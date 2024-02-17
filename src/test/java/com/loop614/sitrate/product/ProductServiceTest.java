@@ -10,8 +10,13 @@ import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.loop614.sitrate.hnbClient.exception.HnbClientException;
 import com.loop614.sitrate.product.entity.Product;
 import com.loop614.sitrate.product.transfer.FilterProduct;
+import com.loop614.sitrate.product.transfer.PopularProductsResponse;
+import com.loop614.sitrate.product.transfer.TopRatedProduct;
+import com.loop614.sitrate.review.ReviewService;
+import com.loop614.sitrate.review.entity.Review;
 
 @SpringBootTest
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
@@ -19,9 +24,12 @@ public class ProductServiceTest {
     @Autowired
     private ProductService productService;
 
+    private ReviewService reviewService;
+
     @Autowired
-    public ProductServiceTest(ProductService productService) {
+    public ProductServiceTest(ProductService productService, ReviewService reviewService) {
         this.productService = productService;
+        this.reviewService = reviewService;
     }
 
     @Test
@@ -47,6 +55,25 @@ public class ProductServiceTest {
                 break;
             }
         }
+        Assertions.assertTrue(itWasFound);
+    }
+
+    @Test
+    public void getPopularProductsOkTest() throws HnbClientException {
+        Product exampleProduct = new Product("example code", "example name", 1.1, "example description");
+        Product savedProduct = this.productService.save(exampleProduct);
+        Review exampleReview = new Review("reviewer", "text", Double.MAX_VALUE);
+        exampleReview.setProduct(savedProduct);
+
+        this.reviewService.save(exampleReview);
+        PopularProductsResponse popularProductsResponse = this.productService.getTopRatedProducts();
+        boolean itWasFound = false;
+        for (TopRatedProduct topRatedProduct : popularProductsResponse.popularProducts) {
+            if (topRatedProduct.getName() == "example name") {
+                itWasFound = true;
+            }
+        }
+
         Assertions.assertTrue(itWasFound);
     }
 }

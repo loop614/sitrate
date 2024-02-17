@@ -35,10 +35,7 @@ public class ProductWriterTest {
     private final ProductWriter productWriter;
 
     @Autowired
-    public ProductWriterTest(
-        HnbClientService hnbClientServiceMock,
-        ProductRepository productRepository
-    ) {
+    public ProductWriterTest(HnbClientService hnbClientServiceMock, ProductRepository productRepository) {
         this.hnbClientServiceMock = hnbClientServiceMock;
         this.productRepository = productRepository;
         this.productWriter = new ProductWriterImpl(
@@ -46,6 +43,7 @@ public class ProductWriterTest {
             this.hnbClientServiceMock
         );
     }
+
     @Test
     public void writeProductOkResponseTest() throws HnbClientException {
         Product exampleProduct = new Product("example code", "example name", 1.1, "example description");

@@ -19,26 +19,29 @@ import reactor.core.publisher.Mono;
 
 @Service
 public class HnbFetcherImpl implements HnbFetcher {
+    private final WebClient webClient;
+
     private static HashMap<String, List<HnbCurrency>> cacheHnbCurrency = new HashMap<String, List<HnbCurrency>>();;
 
+	public HnbFetcherImpl(WebClient.Builder webClientBuilder) {
+		this.webClient = webClientBuilder.baseUrl(HnbClientConfig.BASEURL).build();
+	}
+
     public List<HnbCurrency> currencyEur() throws HnbClientException {
-        LocalDate localDate = LocalDate.now();
-        String todayString = localDate.toString();
+        String todayString = LocalDate.now().toString();
         List<HnbCurrency> cachedList = HnbFetcherImpl.cacheHnbCurrency.get(todayString);
         if(cachedList != null) {
             return cachedList;
         }
 
         List<HnbCurrency> hnbCurrencies = this.getHnbCurrency();
-        HnbFetcherImpl.cacheHnbCurrency = new HashMap<String, List<HnbCurrency>>();
-        HnbFetcherImpl.cacheHnbCurrency.put(todayString, hnbCurrencies);
+        this.updateCache(todayString, hnbCurrencies);
 
         return hnbCurrencies;
     }
 
     private List<HnbCurrency> getHnbCurrency() throws HnbClientException {
-        WebClient webClient = WebClient.create(HnbClientConfig.BASEURL);
-        List<HnbCurrencyReceived> jsonObjects = webClient.get()
+        List<HnbCurrencyReceived> jsonObjects = this.webClient.get()
             .uri(HnbClientConfig.URL)
             .retrieve()
             .onStatus(HttpStatusCode::isError, clientResponse -> Mono.error(HnbClientException::new))
@@ -51,5 +54,10 @@ public class HnbFetcherImpl implements HnbFetcher {
         }
 
         return hnbCurrencies;
+    }
+
+    private void updateCache(String todayString, List<HnbCurrency> hnbCurrencies) {
+        HnbFetcherImpl.cacheHnbCurrency = new HashMap<String, List<HnbCurrency>>();
+        HnbFetcherImpl.cacheHnbCurrency.put(todayString, hnbCurrencies);
     }
 }

@@ -1,7 +1,7 @@
 package com.loop614.sitrate.product.domain;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -31,12 +31,9 @@ public class ProductReaderImpl implements ProductReader {
         query = this.entityManager.createQuery(queryString, Object[].class);
         query.setMaxResults(3);
         List<Object[]> resultList = query.getResultList();
-        List<TopRatedProduct> products = new ArrayList<>();
-
-        for (Object[] result : resultList) {
-            TopRatedProduct product = new TopRatedProduct((String)result[0], (double)result[1]) ;
-            products.add(product);
-        }
+        List<TopRatedProduct> products = resultList.stream()
+            .map(result -> new TopRatedProduct((String) result[0], (double) result[1]))
+            .collect(Collectors.toList());
 
         return new PopularProductsResponse(products);
     }

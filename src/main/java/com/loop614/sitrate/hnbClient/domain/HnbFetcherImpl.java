@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -13,6 +14,8 @@ import com.loop614.sitrate.hnbClient.HnbClientConfig;
 import com.loop614.sitrate.hnbClient.exception.HnbClientException;
 import com.loop614.sitrate.hnbClient.transfer.HnbCurrency;
 import com.loop614.sitrate.hnbClient.transfer.HnbCurrencyReceived;
+
+import reactor.core.publisher.Mono;
 
 @Service
 public class HnbFetcherImpl implements HnbFetcher {
@@ -33,11 +36,12 @@ public class HnbFetcherImpl implements HnbFetcher {
         return hnbCurrencies;
     }
 
-    private List<HnbCurrency> getHnbCurrency() {
+    private List<HnbCurrency> getHnbCurrency() throws HnbClientException {
         WebClient webClient = WebClient.create(HnbClientConfig.BASEURL);
         List<HnbCurrencyReceived> jsonObjects = webClient.get()
             .uri(HnbClientConfig.URL)
             .retrieve()
+            .onStatus(HttpStatusCode::isError, clientResponse -> Mono.error(HnbClientException::new))
             .bodyToMono(new ParameterizedTypeReference<List<HnbCurrencyReceived>>() {})
             .block();
 

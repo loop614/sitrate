@@ -17,3 +17,8 @@ or
 ```console
 $ wget --header="content-type: application/json" --post-data='{"code": "Apple2", "name":"iPhone latest","priceEur":2.2,"description":"this is iphone"}' --output-document - http://localhost:12345/product/new
 ```
+
+### Run tests
+```console
+$ ./mvnw test
+```

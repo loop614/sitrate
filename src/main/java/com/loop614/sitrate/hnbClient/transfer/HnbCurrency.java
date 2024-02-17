@@ -36,6 +36,14 @@ public class HnbCurrency {
         return this.valuta;
     }
 
+    public void setCurrency(String currency) {
+        this.valuta = currency;
+    }
+
+    public void setCurrencyMiddleValue(double middleValue) {
+        this.srednji_tecaj = middleValue;
+    }
+
     public double getCurrencyMiddleValue() {
         return this.srednji_tecaj;
     }

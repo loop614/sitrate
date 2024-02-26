@@ -21,7 +21,7 @@ import reactor.core.publisher.Mono;
 public class HnbFetcherImpl implements HnbFetcher {
     private final WebClient webClient;
 
-    private static HashMap<String, List<HnbCurrency>> cacheHnbCurrency = new HashMap<String, List<HnbCurrency>>();;
+    private static HashMap<String, List<HnbCurrency>> cacheHnbCurrency = new HashMap<String, List<HnbCurrency>>();
 
 	public HnbFetcherImpl(WebClient.Builder webClientBuilder) {
 		this.webClient = webClientBuilder.baseUrl(HnbClientConfig.BASEURL).build();

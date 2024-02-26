@@ -1,5 +1,6 @@
 package com.loop614.sitrate.product.domain;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class ProductWriterImpl implements ProductWriter {
 
         for (HnbCurrency hnbCurrency : hnbCurrencies) {
             if (hnbCurrency.getCurrency().equals("USD") && hnbCurrency.getCurrencyMiddleValue() > 0) {
-                product.setPriceUsd(product.getPriceEur() * hnbCurrency.getCurrencyMiddleValue());
+                product.setPriceUsd(product.getPriceEur().multiply((BigDecimal.valueOf(hnbCurrency.getCurrencyMiddleValue()))));
                 break;
             }
         }

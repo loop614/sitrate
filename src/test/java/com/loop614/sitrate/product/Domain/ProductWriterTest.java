@@ -1,5 +1,6 @@
 package com.loop614.sitrate.product.Domain;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +47,8 @@ public class ProductWriterTest {
 
     @Test
     public void writeProductOkResponseTest() throws HnbClientException {
-        Product exampleProduct = new Product("example code", "example name", 1.1, "example description");
+        BigDecimal onepointone = BigDecimal.valueOf(1.1);
+        Product exampleProduct = new Product("example code", "example name", onepointone, "example description");
         List<HnbCurrency> hnbCurrencies = new ArrayList<HnbCurrency>();
         HnbCurrency usdCurrency = new HnbCurrency();
         usdCurrency.setCurrency("USD");
@@ -58,12 +60,13 @@ public class ProductWriterTest {
 
         Product savedProduct = this.productWriter.save(exampleProduct);
         Assertions.assertNotNull(savedProduct);
-        Assertions.assertTrue(savedProduct.getPriceUsd() == 1.1 * 1.1);
+        onepointone = onepointone.multiply(BigDecimal.valueOf(1.1));
+        Assertions.assertTrue(savedProduct.getPriceUsd().equals(onepointone));
     }
 
     @Test
     public void writeProductEmptyHnbClientResponseTest() throws HnbClientException {
-        Product exampleProduct = new Product("example code", "example name", 1.1, "example description");
+        Product exampleProduct = new Product("example code", "example name", BigDecimal.valueOf(1.1), "example description");
         List<HnbCurrency> hnbCurrencies = new ArrayList<HnbCurrency>();
         Mockito
             .when(this.hnbClientServiceMock.currencyEur())
@@ -71,18 +74,18 @@ public class ProductWriterTest {
 
         Product savedProduct = this.productWriter.save(exampleProduct);
         Assertions.assertNotNull(savedProduct);
-        Assertions.assertEquals(0, savedProduct.getPriceUsd());
+        Assertions.assertNull(savedProduct.getPriceUsd());
     }
 
     @Test
     public void writeProductsHnbClientExceptionTest() throws HnbClientException {
-        Product exampleProduct = new Product("example code", "example name", 1.1, "example description");
+        Product exampleProduct = new Product("example code", "example name", BigDecimal.valueOf(1.1), "example description");
         Mockito
             .when(this.hnbClientServiceMock.currencyEur())
             .thenThrow(HnbClientException.class);
 
         Product savedProduct = this.productWriter.save(exampleProduct);
         Assertions.assertNotNull(savedProduct);
-        Assertions.assertEquals(0, savedProduct.getPriceUsd());
+        Assertions.assertNull(savedProduct.getPriceUsd());
     }
 }

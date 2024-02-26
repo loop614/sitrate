@@ -2,6 +2,7 @@ package com.loop614.sitrate.product;
 
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
@@ -39,7 +40,7 @@ public class ProductServiceTest {
         Product exampleProduct = new Product(
             exampleCode,
             exampleName,
-            2.2,
+            BigDecimal.valueOf(2.2),
             "example description"
         );
         Product savedProduct = this.productService.save(exampleProduct);
@@ -60,9 +61,9 @@ public class ProductServiceTest {
 
     @Test
     public void getPopularProductsOkTest() throws HnbClientException {
-        Product exampleProduct = new Product("example code", "example name", 1.1, "example description");
+        Product exampleProduct = new Product("example code", "example name", BigDecimal.valueOf(1.1), "example description");
         Product savedProduct = this.productService.save(exampleProduct);
-        Review exampleReview = new Review("reviewer", "text", Double.MAX_VALUE);
+        Review exampleReview = new Review("reviewer", "text", BigDecimal.valueOf(Integer.MAX_VALUE));
         exampleReview.setProduct(savedProduct);
 
         this.reviewService.save(exampleReview);

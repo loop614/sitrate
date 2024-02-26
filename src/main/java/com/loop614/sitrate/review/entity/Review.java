@@ -1,5 +1,7 @@
 package com.loop614.sitrate.review.entity;
 
+import java.math.BigDecimal;
+
 import com.loop614.sitrate.product.entity.Product;
 
 import jakarta.persistence.*;
@@ -21,10 +23,10 @@ public class Review {
     @Column(name = "TEXT", columnDefinition = "TEXT")
     private String text;
 
-    @Column(name = "RATING", nullable = false)
-    private double rating;
+    @Column(name = "RATING", nullable = false, scale = 15, precision = 30)
+    private BigDecimal rating;
 
-    public Review(String reviewer, String text, double rating)
+    public Review(String reviewer, String text, BigDecimal rating)
     {
         this.reviewer = reviewer;
         this.text = text;

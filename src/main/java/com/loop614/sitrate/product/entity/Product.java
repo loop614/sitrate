@@ -1,5 +1,7 @@
 package com.loop614.sitrate.product.entity;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -15,18 +17,18 @@ public class Product {
     @Column(name = "NAME", length = 255, nullable = false)
     private String name;
 
-    @Column(name = "PRICE_EUR")
-    private double priceEur;
+    @Column(name = "PRICE_EUR", scale = 15, precision = 30)
+    private BigDecimal priceEur;
 
-    @Column(name = "PRICE_USD")
-    private double priceUsd;
+    @Column(name = "PRICE_USD", scale = 15, precision = 30)
+    private BigDecimal priceUsd;
 
     @Column(name = "DESCRIPTION", columnDefinition = "TEXT")
     private String description;
 
     public Product() {}
 
-    public Product(String code, String name, double priceEur, String description) {
+    public Product(String code, String name, BigDecimal priceEur, String description) {
         this.code = code;
         this.name = name;
         this.priceEur = priceEur;
@@ -53,15 +55,15 @@ public class Product {
         return this.description;
     }
 
-    public double getPriceEur() {
+    public BigDecimal getPriceEur() {
         return this.priceEur;
     }
 
-    public double getPriceUsd() {
+    public BigDecimal getPriceUsd() {
         return this.priceUsd;
     }
 
-    public void setPriceUsd(double priceUsd) {
+    public void setPriceUsd(BigDecimal priceUsd) {
         this.priceUsd = priceUsd;
     }
 }

@@ -57,7 +57,7 @@ public class HnbFetcherImpl implements HnbFetcher {
     }
 
     private void updateCache(String todayString, List<HnbCurrency> hnbCurrencies) {
-        HnbFetcherImpl.cacheHnbCurrency = new HashMap<String, List<HnbCurrency>>();
+        HnbFetcherImpl.cacheHnbCurrency.clear();
         HnbFetcherImpl.cacheHnbCurrency.put(todayString, hnbCurrencies);
     }
 }

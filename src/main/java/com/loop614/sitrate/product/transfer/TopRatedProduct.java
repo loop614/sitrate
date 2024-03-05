@@ -1,13 +1,19 @@
 package com.loop614.sitrate.product.transfer;
 
+import java.math.BigDecimal;
+
 public class TopRatedProduct {
     private String name;
-    private double rating;
+    private BigDecimal rating;
 
     public TopRatedProduct() {}
 
-    public TopRatedProduct(String name, double rating) {
+    public TopRatedProduct(String name, BigDecimal rating) {
         this.name = name;
+        this.rating = rating;
+    }
+
+    public TopRatedProduct(BigDecimal rating) {
         this.rating = rating;
     }
 
@@ -19,11 +25,11 @@ public class TopRatedProduct {
         this.name = name;
     }
 
-    public double getRating() {
+    public BigDecimal getRating() {
         return this.rating;
     }
 
-    public void setRating(double rating) {
+    public void setRating(BigDecimal rating) {
         this.rating = rating;
     }
 }

@@ -21,8 +21,8 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @PostMapping("/product/new")
-    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
+    @PostMapping("/product/upsert")
+    public ResponseEntity<Product> upsertProduct(@RequestBody Product product) {
         return new ResponseEntity<Product>(this.productService.save(product), HttpStatus.CREATED);
     }
 

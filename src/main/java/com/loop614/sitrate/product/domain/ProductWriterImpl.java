@@ -19,9 +19,8 @@ public class ProductWriterImpl implements ProductWriter {
     private final HnbClientService hnbClientService;
 
     public ProductWriterImpl(
-        ProductRepository productRepository,
-        HnbClientService hnbClientService
-    ) {
+            ProductRepository productRepository,
+            HnbClientService hnbClientService) {
         this.productRepository = productRepository;
         this.hnbClientService = hnbClientService;
     }
@@ -35,15 +34,15 @@ public class ProductWriterImpl implements ProductWriter {
 
         try {
             hnbCurrencies = this.hnbClientService.currencyEur();
-        }
-        catch (HnbClientException e) {
+        } catch (HnbClientException e) {
             e.printStackTrace();
             return this.productRepository.save(product);
         }
 
         for (HnbCurrency hnbCurrency : hnbCurrencies) {
             if (hnbCurrency.getCurrency().equals("USD") && hnbCurrency.getCurrencyMiddleValue() > 0) {
-                product.setPriceUsd(product.getPriceEur().multiply((BigDecimal.valueOf(hnbCurrency.getCurrencyMiddleValue()))));
+                product.setPriceUsd(
+                        product.getPriceEur().multiply((BigDecimal.valueOf(hnbCurrency.getCurrencyMiddleValue()))));
                 break;
             }
         }

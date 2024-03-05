@@ -17,6 +17,9 @@ public class Review {
     @JoinColumn(name = "PRODUCT_ID", nullable = false)
     private Product product;
 
+    @Column(name="PRODUCT_ID", insertable=false, updatable=false)
+    private Long productId;
+
     @Column(name = "REVIEWER", nullable = false)
     private String reviewer;
 

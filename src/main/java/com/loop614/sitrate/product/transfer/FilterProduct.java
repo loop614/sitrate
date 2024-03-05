@@ -4,7 +4,8 @@ public class FilterProduct {
     private String code;
     private String name;
 
-    public FilterProduct() {}
+    public FilterProduct() {
+    }
 
     public FilterProduct(String code, String name) {
         this.code = code;

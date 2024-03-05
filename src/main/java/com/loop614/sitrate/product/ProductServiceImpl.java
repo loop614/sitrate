@@ -6,6 +6,7 @@ import com.loop614.sitrate.product.entity.Product;
 import com.loop614.sitrate.product.repository.ProductRepository;
 import com.loop614.sitrate.product.transfer.FilterProduct;
 import com.loop614.sitrate.product.transfer.PopularProductsResponse;
+import com.loop614.sitrate.product.transfer.ProductName;
 
 import java.util.List;
 
@@ -20,10 +21,9 @@ public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
 
     public ProductServiceImpl(
-        ProductReader productReader,
-        ProductWriter productWriter,
-        ProductRepository productRepository
-    ) {
+            ProductReader productReader,
+            ProductWriter productWriter,
+            ProductRepository productRepository) {
         this.productReader = productReader;
         this.productWriter = productWriter;
         this.productRepository = productRepository;
@@ -39,5 +39,9 @@ public class ProductServiceImpl implements ProductService {
 
     public PopularProductsResponse getTopRatedProducts() {
         return this.productReader.getTopRatedProducts();
+    }
+
+    public List<ProductName> findNamesByIdIn(List<Long> ids) {
+        return this.productReader.findNamesByIdIn(ids);
     }
 }

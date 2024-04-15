@@ -1,5 +1,7 @@
 package com.loop614.sitrate.review;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.loop614.sitrate.product.transfer.PopularProductsResponse;
@@ -20,6 +22,10 @@ public class ReviewServiceImpl implements ReviewService {
 
     public Review save(Review review) {
         return this.reviewRepository.save(review);
+    }
+
+    public List<Review> saveAll(List<Review> reviews) {
+        return this.reviewRepository.saveAll(reviews);
     }
 
     public PopularProductsResponse getTopRatedProductsJoinFromReview() {

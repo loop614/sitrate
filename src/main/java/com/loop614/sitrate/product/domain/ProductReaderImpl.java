@@ -49,7 +49,7 @@ public class ProductReaderImpl implements ProductReader {
         List<Object[]> resultList = query.getResultList();
         return resultList.stream()
             .map(result -> new ProductName(
-                Long.valueOf((long)result[0]),
+                (long)result[0],
                 String.valueOf(result[1])
             ))
             .collect(Collectors.toList());

@@ -1,6 +1,7 @@
 ### Description
 - Java Spring app with h2
 - Product with Reviews (1-n relationship)
+- Use external service
 - Popular product query scan count comparison using EXPLAIN ANALYZE
 
 ### Requirements

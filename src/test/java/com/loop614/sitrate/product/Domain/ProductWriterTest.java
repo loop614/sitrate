@@ -58,7 +58,7 @@ public class ProductWriterTest {
             .when(this.hnbClientServiceMock.currencyEur())
             .thenReturn(hnbCurrencies);
 
-        Product savedProduct = this.productWriter.save(exampleProduct);
+        Product savedProduct = this.productWriter.upsert(exampleProduct);
         Assertions.assertNotNull(savedProduct);
         onepointone = onepointone.multiply(BigDecimal.valueOf(1.1));
         Assertions.assertTrue(savedProduct.getPriceUsd().equals(onepointone));
@@ -72,7 +72,7 @@ public class ProductWriterTest {
             .when(this.hnbClientServiceMock.currencyEur())
             .thenReturn(hnbCurrencies);
 
-        Product savedProduct = this.productWriter.save(exampleProduct);
+        Product savedProduct = this.productWriter.upsert(exampleProduct);
         Assertions.assertNotNull(savedProduct);
         Assertions.assertNull(savedProduct.getPriceUsd());
     }
@@ -84,7 +84,7 @@ public class ProductWriterTest {
             .when(this.hnbClientServiceMock.currencyEur())
             .thenThrow(HnbClientException.class);
 
-        Product savedProduct = this.productWriter.save(exampleProduct);
+        Product savedProduct = this.productWriter.upsert(exampleProduct);
         Assertions.assertNotNull(savedProduct);
         Assertions.assertNull(savedProduct.getPriceUsd());
     }

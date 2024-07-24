@@ -1,5 +1,9 @@
 package com.loop614.sitrate.product;
 
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import com.loop614.sitrate.product.domain.ProductReader;
 import com.loop614.sitrate.product.domain.ProductWriter;
 import com.loop614.sitrate.product.entity.Product;
@@ -7,10 +11,6 @@ import com.loop614.sitrate.product.repository.ProductRepository;
 import com.loop614.sitrate.product.transfer.FilterProduct;
 import com.loop614.sitrate.product.transfer.PopularProductsResponse;
 import com.loop614.sitrate.product.transfer.ProductName;
-
-import java.util.List;
-
-import org.springframework.stereotype.Service;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -29,8 +29,8 @@ public class ProductServiceImpl implements ProductService {
         this.productRepository = productRepository;
     }
 
-    public Product save(Product product) {
-        return this.productWriter.save(product);
+    public Product upsert(Product product) {
+        return this.productWriter.upsert(product);
     }
 
     public List<Product> find(FilterProduct product) {

@@ -8,7 +8,7 @@ import com.loop614.sitrate.product.transfer.PopularProductsResponse;
 import com.loop614.sitrate.product.transfer.ProductName;
 
 public interface ProductService {
-    Product save(Product newproduct);
+    Product upsert(Product product);
 
     List<Product> find(FilterProduct product);
 

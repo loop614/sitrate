@@ -1,11 +1,10 @@
 package com.loop614.sitrate.product;
 
-import org.junit.jupiter.api.Test;
-
 import java.math.BigDecimal;
 import java.util.List;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -23,9 +22,9 @@ import com.loop614.sitrate.review.entity.Review;
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
 public class ProductServiceTest {
     @Autowired
-    private ProductService productService;
+    private final ProductService productService;
 
-    private ReviewService reviewService;
+    private final ReviewService reviewService;
 
     @Autowired
     public ProductServiceTest(ProductService productService, ReviewService reviewService) {
@@ -43,7 +42,7 @@ public class ProductServiceTest {
             BigDecimal.valueOf(2.2),
             "example description"
         );
-        Product savedProduct = this.productService.save(exampleProduct);
+        Product savedProduct = this.productService.upsert(exampleProduct);
         Assertions.assertNotNull(savedProduct);
         Assertions.assertTrue(savedProduct.getId() > 0);
 
@@ -62,7 +61,7 @@ public class ProductServiceTest {
     @Test
     public void getPopularProductsOkTest() throws HnbClientException {
         Product exampleProduct = new Product("example code", "example name", BigDecimal.valueOf(1.1), "example description");
-        Product savedProduct = this.productService.save(exampleProduct);
+        Product savedProduct = this.productService.upsert(exampleProduct);
         Review exampleReview = new Review("reviewer", "text", BigDecimal.valueOf(Integer.MAX_VALUE));
         exampleReview.setProduct(savedProduct);
 
@@ -70,7 +69,7 @@ public class ProductServiceTest {
         PopularProductsResponse popularProductsResponse = this.productService.getTopRatedProducts();
         boolean itWasFound = false;
         for (TopRatedProduct topRatedProduct : popularProductsResponse.popularProducts) {
-            if (topRatedProduct.getName() == "example name") {
+            if ("example name".equals(topRatedProduct.getName())) {
                 itWasFound = true;
             }
         }
